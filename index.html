@@ -6,702 +6,524 @@
   <title>ANIMERIUM — アニメファンサイト</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;700;900&family=Dela+Gothic+One&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #9696fa;
-      --primary-dark: #6a6acf;
-      --primary-light: #c4c4ff;
-      --primary-glow: rgba(150, 150, 250, 0.4);
-      --bg: #0a0a14;
-      --bg-2: #0f0f1e;
-      --bg-card: #13131f;
-      --text: #e8e8ff;
-      --text-muted: #8888bb;
-      --accent: #fa96d8;
-      --accent2: #96fad2;
-      --border: rgba(150, 150, 250, 0.2);
+      --blue: #5bb8f5;
+      --blue-light: #d6effe;
+      --blue-dark: #2a7fc1;
+      --yellow: #ffe066;
+      --yellow-dark: #f5c200;
+      --pink: #ff8fab;
+      --pink-light: #ffd6e0;
+      --white: #ffffff;
+      --offwhite: #f4f9ff;
+      --navy: #1a3a5c;
+      --text: #1a2a3a;
+      --text-muted: #5a7a9a;
+      --border: #b8d8f0;
     }
 
-    * {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: var(--bg);
+      background: var(--offwhite);
       color: var(--text);
-      font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 300;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
+    /* ── PATTERN BG ── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: radial-gradient(circle, var(--blue-light) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      opacity: 0.6;
       pointer-events: none;
-      z-index: 9999;
-      opacity: 0.5;
+      z-index: 0;
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       z-index: 100;
+      background: var(--blue);
+      border-bottom: 3px solid var(--blue-dark);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(10, 10, 20, 0.8);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      height: 56px;
     }
 
     .nav-logo {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.2rem;
-      font-weight: 900;
-      letter-spacing: 0.2em;
-      color: var(--primary);
+      font-family: 'Dela Gothic One', cursive;
+      font-size: 1.3rem;
+      color: var(--white);
       text-decoration: none;
-      text-shadow: 0 0 20px var(--primary-glow);
+      letter-spacing: 0.05em;
+      text-shadow: 2px 2px 0 var(--blue-dark);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 0.3rem; list-style: none; }
 
     .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
+      display: block;
+      padding: 0.4rem 1rem;
       font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      transition: color 0.3s, text-shadow 0.3s;
-      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 20px;
+      transition: background 0.2s;
+      letter-spacing: 0.05em;
     }
 
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--primary);
-      text-shadow: 0 0 12px var(--primary-glow);
-    }
+    .nav-links a:hover { background: rgba(255,255,255,0.25); }
+    .nav-links a.active { background: var(--white); color: var(--blue-dark); }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       position: relative;
-      overflow: hidden;
-      padding: 6rem 2rem 4rem;
-    }
-
-    /* animated grid bg */
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-      animation: gridShift 20s linear infinite;
-    }
-
-    @keyframes gridShift {
-      from { transform: translateY(0); }
-      to { transform: translateY(60px); }
-    }
-
-    /* floating orbs */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      animation: orbFloat 8s ease-in-out infinite;
-    }
-
-    .orb-1 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(150,150,250,0.15) 0%, transparent 70%);
-      top: -100px; left: -100px;
-      animation-delay: 0s;
-    }
-
-    .orb-2 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(250,150,216,0.1) 0%, transparent 70%);
-      bottom: -50px; right: -50px;
-      animation-delay: -4s;
-    }
-
-    .orb-3 {
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(150,250,210,0.08) 0%, transparent 70%);
-      top: 40%; left: 60%;
-      animation-delay: -2s;
-    }
-
-    @keyframes orbFloat {
-      0%, 100% { transform: translate(0, 0); }
-      33% { transform: translate(20px, -30px); }
-      66% { transform: translate(-15px, 20px); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
+      z-index: 1;
+      padding: 4rem 2rem 3rem;
       text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-deco {
+      position: absolute;
+      font-family: 'Dela Gothic One', cursive;
+      color: var(--blue-light);
+      font-size: 12rem;
+      opacity: 0.35;
+      top: -1rem;
+      left: -2rem;
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .hero-deco2 {
+      position: absolute;
+      font-family: 'Dela Gothic One', cursive;
+      color: var(--yellow);
+      font-size: 8rem;
+      opacity: 0.4;
+      bottom: -1rem;
+      right: 1rem;
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
     }
 
     .hero-badge {
       display: inline-block;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
-      color: var(--primary);
-      border: 1px solid var(--border);
-      padding: 0.4rem 1.2rem;
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-      animation: fadeUp 0.8s ease both;
+      background: var(--yellow);
+      color: var(--navy);
+      font-size: 0.75rem;
+      font-weight: 900;
+      padding: 0.3rem 1.2rem;
+      border-radius: 20px;
+      border: 2px solid var(--yellow-dark);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.1em;
+      transform: rotate(-1deg);
     }
 
     .hero-title {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 900;
+      font-family: 'Dela Gothic One', cursive;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      color: var(--blue-dark);
       line-height: 1;
-      letter-spacing: -0.02em;
-      color: var(--primary);
-      text-shadow:
-        0 0 40px var(--primary-glow),
-        0 0 80px rgba(150,150,250,0.2);
-      animation: fadeUp 0.8s 0.1s ease both;
+      text-shadow: 4px 4px 0 var(--blue-light), 6px 6px 0 rgba(91,184,245,0.3);
       margin-bottom: 0.5rem;
+      position: relative;
     }
 
-    .hero-subtitle-jp {
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      font-size: clamp(1rem, 3vw, 1.6rem);
-      font-weight: 900;
-      letter-spacing: 0.3em;
+    .hero-sub {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
       color: var(--text-muted);
       margin-bottom: 1.5rem;
-      animation: fadeUp 0.8s 0.2s ease both;
+      letter-spacing: 0.2em;
     }
 
     .hero-desc {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       line-height: 2;
-      max-width: 480px;
-      margin: 0 auto 3rem;
-      animation: fadeUp 0.8s 0.3s ease both;
+      max-width: 420px;
+      margin: 0 auto 2rem;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 1rem;
+      gap: 0.8rem;
       justify-content: center;
       flex-wrap: wrap;
-      animation: fadeUp 0.8s 0.4s ease both;
     }
 
     .btn {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 900;
       text-decoration: none;
-      padding: 0.9rem 2.2rem;
-      border: 1px solid var(--primary);
-      color: var(--bg);
-      background: var(--primary);
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
+      border-radius: 30px;
+      border: 2.5px solid var(--blue-dark);
+      background: var(--blue);
+      color: var(--white);
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 3px 3px 0 var(--blue-dark);
+      letter-spacing: 0.05em;
     }
 
-    .btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: white;
-      transform: translateX(-100%);
-      transition: transform 0.3s;
+    .btn:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--blue-dark); }
+    .btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--blue-dark); }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--navy);
+      border-color: var(--yellow-dark);
+      box-shadow: 3px 3px 0 var(--yellow-dark);
     }
 
-    .btn:hover::before {
-      transform: translateX(0);
-    }
+    .btn-yellow:hover { box-shadow: 5px 5px 0 var(--yellow-dark); }
 
-    .btn:hover {
-      color: var(--bg);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      color: var(--bg);
-    }
-
-    /* ── SCROLL INDICATOR ── */
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      font-family: 'Orbitron', monospace;
-      animation: fadeUp 1s 0.8s ease both;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--primary), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.2); }
-    }
-
-    /* ── SECTION COMMON ── */
+    /* ── SECTION ── */
     section {
-      padding: 6rem 3rem;
-      max-width: 1200px;
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
       margin: 0 auto;
+      padding: 3rem 1.5rem;
     }
 
-    .section-label {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
-      color: var(--primary);
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-tag {
+      background: var(--blue);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 0.25rem 0.9rem;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+      border: 2px solid var(--blue-dark);
     }
 
     .section-title {
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
-      line-height: 1.2;
+      font-family: 'Dela Gothic One', cursive;
+      font-size: 1.6rem;
+      color: var(--navy);
     }
 
-    .section-title span {
-      color: var(--primary);
-    }
-
-    .section-divider {
-      width: 60px;
+    .section-line {
+      flex: 1;
       height: 2px;
-      background: linear-gradient(to right, var(--primary), transparent);
-      margin-bottom: 3rem;
+      background: linear-gradient(to right, var(--border), transparent);
     }
 
-    /* ── FEATURED SECTION ── */
-    .featured-grid {
+    /* ── CARD GRID ── */
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5px;
-      background: var(--border);
-      border: 1px solid var(--border);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
     }
 
-    .featured-card {
-      background: var(--bg-card);
-      padding: 2.5rem;
+    .card {
+      background: var(--white);
+      border: 2.5px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
       text-decoration: none;
       color: inherit;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
+      gap: 0.7rem;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      box-shadow: 3px 3px 0 var(--border);
     }
 
-    .featured-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--primary);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
+    .card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--blue);
+      border-color: var(--blue);
     }
 
-    .featured-card:hover {
-      background: #16162a;
+    .card-num {
+      font-size: 0.65rem;
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: 0.15em;
     }
 
-    .featured-card:hover::after {
-      transform: scaleX(1);
-    }
-
-    .card-icon {
-      font-size: 2rem;
-      line-height: 1;
-    }
-
-    .card-number {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--primary);
-    }
+    .card-icon { font-size: 2rem; }
 
     .card-title {
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      font-size: 1.3rem;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 1.05rem;
       font-weight: 700;
+      color: var(--navy);
     }
 
     .card-desc {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       line-height: 1.8;
+      flex: 1;
     }
 
     .card-arrow {
-      margin-top: auto;
-      font-size: 1.2rem;
-      color: var(--primary);
-      transition: transform 0.3s;
+      font-size: 1.1rem;
+      color: var(--blue);
+      font-weight: 900;
+      transition: transform 0.2s;
     }
 
-    .featured-card:hover .card-arrow {
-      transform: translateX(6px);
-    }
+    .card:hover .card-arrow { transform: translateX(4px); }
 
-    /* ── MARQUEE ── */
-    .marquee-section {
-      padding: 2rem 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--yellow);
+      border-top: 2.5px solid var(--yellow-dark);
+      border-bottom: 2.5px solid var(--yellow-dark);
       overflow: hidden;
-      margin: 0;
-      max-width: 100%;
-      background: var(--bg-2);
+      padding: 0.6rem 0;
+      position: relative;
+      z-index: 1;
     }
 
-    .marquee-track {
+    .ticker-track {
       display: flex;
-      gap: 3rem;
-      animation: marquee 20s linear infinite;
+      animation: ticker 18s linear infinite;
       white-space: nowrap;
       width: max-content;
     }
 
-    .marquee-item {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      flex-shrink: 0;
+    .ticker-item {
+      font-weight: 900;
+      font-size: 0.85rem;
+      color: var(--navy);
+      padding: 0 2.5rem;
+      letter-spacing: 0.1em;
     }
 
-    .marquee-item span {
-      color: var(--primary);
-      margin-right: 3rem;
-    }
+    .ticker-item::before { content: '★  '; }
 
-    @keyframes marquee {
+    @keyframes ticker {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
     /* ── BLOG PREVIEW ── */
-    .blog-preview {
-      background: var(--bg-2);
-      padding: 6rem 0;
+    .blog-strip {
+      background: var(--blue-light);
+      border-top: 2.5px solid var(--border);
+      border-bottom: 2.5px solid var(--border);
+      position: relative;
+      z-index: 1;
     }
 
-    .blog-preview > * {
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 3rem;
-      padding-right: 3rem;
-    }
-
-    .blog-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border: 1px solid var(--border);
-    }
+    .blog-list { display: flex; flex-direction: column; }
 
     .blog-item {
       display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 2rem;
-      padding: 1.8rem 2rem;
-      border-bottom: 1px solid var(--border);
+      grid-template-columns: 7rem 1fr;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 1rem 0;
+      border-bottom: 1.5px dashed var(--border);
       text-decoration: none;
       color: inherit;
-      transition: background 0.3s;
+      transition: background 0.15s;
+      border-radius: 8px;
+      padding: 0.9rem 0.5rem;
     }
 
-    .blog-item:last-child {
-      border-bottom: none;
-    }
-
-    .blog-item:hover {
-      background: rgba(150,150,250,0.05);
-    }
+    .blog-item:last-child { border-bottom: none; }
+    .blog-item:hover { background: rgba(91,184,245,0.1); }
 
     .blog-date {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--primary);
-      white-space: nowrap;
-    }
-
-    .blog-title {
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.72rem;
       font-weight: 700;
+      color: var(--blue-dark);
     }
 
-    .blog-tag {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.7rem;
-      white-space: nowrap;
+    .blog-text {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
     }
 
     /* ── FOOTER ── */
     footer {
-      padding: 3rem;
-      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+      background: var(--navy);
+      color: var(--white);
+      padding: 2rem 2.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: gap;
-      max-width: 100%;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .footer-logo {
-      font-family: 'Orbitron', monospace;
-      font-size: 1rem;
-      font-weight: 900;
-      color: var(--primary);
-      text-shadow: 0 0 20px var(--primary-glow);
+      font-family: 'Dela Gothic One', cursive;
+      font-size: 1.1rem;
+      color: var(--yellow);
+      text-shadow: 2px 2px 0 var(--yellow-dark);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
 
     .footer-links a {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
       text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.3s;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
     }
 
-    .footer-links a:hover {
-      color: var(--primary);
-    }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
 
-    .footer-copy {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      .nav-links a { font-size: 0.65rem; }
-      section { padding: 4rem 1.5rem; }
-      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-      .blog-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .blog-tag { display: none; }
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a { padding: 0.35rem 0.6rem; font-size: 0.72rem; }
+      .hero { padding: 2.5rem 1rem 2rem; }
+      .hero-deco { font-size: 6rem; }
+      footer { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">ANIMERIUM</a>
+    <a href="index.html" class="nav-logo">★ ANIMERIUM</a>
     <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="ranking.html">Ranking</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.html" class="active">HOME</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="ranking.html">RANKING</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="about.html">ABOUT</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
   <div class="hero">
-    <div class="hero-grid"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="hero-content">
-      <div class="hero-badge">anime fan site</div>
-      <h1 class="hero-title">ANIMERIUM</h1>
-      <p class="hero-subtitle-jp">アニメ愛のすべてを、ここに。</p>
-      <p class="hero-desc">
-        好きなアニメへの想い、オリジナルファンアート、ランキング——<br>
-        ひとりのアニメファンが綴る、偏愛の記録。
-      </p>
-      <div class="hero-buttons">
-        <a href="gallery.html" class="btn">ギャラリーへ</a>
-        <a href="blog.html" class="btn btn-outline">ブログを読む</a>
-      </div>
-    </div>
-    <div class="scroll-hint">
-      <div class="scroll-line"></div>
-      <span>SCROLL</span>
+    <div class="hero-deco">★</div>
+    <div class="hero-deco2">✦</div>
+    <div class="hero-badge">✦ ANIME FAN SITE ✦</div>
+    <h1 class="hero-title">ANIMERIUM</h1>
+    <p class="hero-sub">アニメ愛のすべてを、ここに。</p>
+    <p class="hero-desc">好きなアニメへの想い、ファンアート、ランキング——<br>ひとりのアニメファンが綴る、偏愛の記録。</p>
+    <div class="hero-buttons">
+      <a href="gallery.html" class="btn">ギャラリーへ →</a>
+      <a href="blog.html" class="btn btn-yellow">ブログを読む →</a>
     </div>
   </div>
 
-  <!-- MARQUEE -->
-  <div class="marquee-section">
-    <div class="marquee-track">
-      <div class="marquee-item"><span>★</span>ANIME FAN SITE<span>★</span>ORIGINAL ART<span>★</span>RANKING<span>★</span>BLOG<span>★</span>GALLERY<span>★</span>ANIME FAN SITE<span>★</span>ORIGINAL ART<span>★</span>RANKING<span>★</span>BLOG<span>★</span>GALLERY</div>
-      <div class="marquee-item"><span>★</span>ANIME FAN SITE<span>★</span>ORIGINAL ART<span>★</span>RANKING<span>★</span>BLOG<span>★</span>GALLERY<span>★</span>ANIME FAN SITE<span>★</span>ORIGINAL ART<span>★</span>RANKING<span>★</span>BLOG<span>★</span>GALLERY</div>
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">ANIME FAN SITE</span>
+      <span class="ticker-item">ORIGINAL ART</span>
+      <span class="ticker-item">RANKING</span>
+      <span class="ticker-item">BLOG</span>
+      <span class="ticker-item">GALLERY</span>
+      <span class="ticker-item">ANIMATION</span>
+      <span class="ticker-item">ANIME FAN SITE</span>
+      <span class="ticker-item">ORIGINAL ART</span>
+      <span class="ticker-item">RANKING</span>
+      <span class="ticker-item">BLOG</span>
+      <span class="ticker-item">GALLERY</span>
+      <span class="ticker-item">ANIMATION</span>
     </div>
   </div>
 
-  <!-- FEATURED PAGES -->
   <section>
-    <div class="reveal">
-      <p class="section-label">Contents</p>
-      <h2 class="section-title">サイトの<span>コンテンツ</span></h2>
-      <div class="section-divider"></div>
+    <div class="section-header">
+      <span class="section-tag">CONTENTS</span>
+      <h2 class="section-title">サイトのコンテンツ</h2>
+      <div class="section-line"></div>
     </div>
 
-    <div class="featured-grid reveal">
-      <a href="blog.html" class="featured-card">
-        <div class="card-number">01 / BLOG</div>
+    <div class="card-grid">
+      <a href="blog.html" class="card">
+        <div class="card-num">01 / BLOG</div>
         <div class="card-icon">📝</div>
         <div class="card-title">ブログ</div>
-        <p class="card-desc">アニメの感想・考察・日々の推し活など、好きなことを気ままに書き綴っています。</p>
+        <p class="card-desc">感想・考察・日々の推し活など、気ままに書き綴っています。</p>
         <div class="card-arrow">→</div>
       </a>
-      <a href="ranking.html" class="featured-card">
-        <div class="card-number">02 / RANKING</div>
+      <a href="ranking.html" class="card">
+        <div class="card-num">02 / RANKING</div>
         <div class="card-icon">🏆</div>
         <div class="card-title">ランキング</div>
-        <p class="card-desc">個人的な偏愛ランキング。好きなアニメ・キャラクター・OP/EDなどを独断と偏見で並べています。</p>
+        <p class="card-desc">独断と偏見による偏愛ランキング。随時更新中。</p>
         <div class="card-arrow">→</div>
       </a>
-      <a href="gallery.html" class="featured-card">
-        <div class="card-number">03 / GALLERY</div>
+      <a href="gallery.html" class="card">
+        <div class="card-num">03 / GALLERY</div>
         <div class="card-icon">🎨</div>
         <div class="card-title">ギャラリー</div>
-        <p class="card-desc">自作ファンアートやアニメーションの展示室。すべて手描きのオリジナル作品です。</p>
+        <p class="card-desc">自作ファンアートやアニメーションの展示室。</p>
         <div class="card-arrow">→</div>
       </a>
-      <a href="about.html" class="featured-card">
-        <div class="card-number">04 / ABOUT</div>
+      <a href="about.html" class="card">
+        <div class="card-num">04 / ABOUT</div>
         <div class="card-icon">🌸</div>
         <div class="card-title">このサイトについて</div>
-        <p class="card-desc">管理人のプロフィールとサイトについての説明。好きな作品や活動について紹介しています。</p>
+        <p class="card-desc">管理人のプロフィールと各種リンク。</p>
         <div class="card-arrow">→</div>
       </a>
     </div>
   </section>
 
-  <!-- BLOG PREVIEW -->
-  <div class="blog-preview">
-    <div class="reveal">
-      <p class="section-label">Latest Posts</p>
-      <h2 class="section-title">最新の<span>ブログ記事</span></h2>
-      <div class="section-divider"></div>
-    </div>
+  <div class="blog-strip">
+    <section>
+      <div class="section-header">
+        <span class="section-tag">LATEST</span>
+        <h2 class="section-title">最新のブログ記事</h2>
+        <div class="section-line"></div>
+      </div>
 
-    <div class="blog-list reveal">
-      <a href="blog.html" class="blog-item">
-        <span class="blog-date">2025.06.01</span>
-        <span class="blog-title">最近ハマってるアニメの話、全力で語ります</span>
-        <span class="blog-tag">感想</span>
-      </a>
-      <a href="blog.html" class="blog-item">
-        <span class="blog-date">2025.05.28</span>
-        <span class="blog-title">新しいファンアートを描いたのでギャラリーに追加しました</span>
-        <span class="blog-tag">制作日記</span>
-      </a>
-      <a href="blog.html" class="blog-item">
-        <span class="blog-date">2025.05.20</span>
-        <span class="blog-title">ランキングページを更新しました — 今期覇権アニメを迎えて</span>
-        <span class="blog-tag">更新情報</span>
-      </a>
-      <a href="blog.html" class="blog-item">
-        <span class="blog-date">2025.05.10</span>
-        <span class="blog-title">好きなOPを語りたい欲が爆発しているので書きます</span>
-        <span class="blog-tag">語り</span>
-      </a>
-    </div>
+      <div class="blog-list">
+        <a href="blog.html" class="blog-item">
+          <span class="blog-date">2025.06.01</span>
+          <span class="blog-text">最近ハマってるアニメが最高すぎて語彙力を失っている。</span>
+        </a>
+        <a href="blog.html" class="blog-item">
+          <span class="blog-date">2025.05.28</span>
+          <span class="blog-text">新しいファンアートを描いてギャラリーに追加しました。</span>
+        </a>
+        <a href="blog.html" class="blog-item">
+          <span class="blog-date">2025.05.20</span>
+          <span class="blog-text">今期のアニメ、OP/EDが全体的に神すぎる。何度でも聴ける。</span>
+        </a>
+        <a href="blog.html" class="blog-item">
+          <span class="blog-date">2025.05.10</span>
+          <span class="blog-text">久しぶりに1話から見直したら、やっぱり最高だった。</span>
+        </a>
+      </div>
+    </section>
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">ANIMERIUM</div>
+    <div class="footer-logo">★ ANIMERIUM</div>
     <ul class="footer-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="blog.html">Blog</a></li>
@@ -712,17 +534,5 @@
     <span class="footer-copy">© 2025 ANIMERIUM</span>
   </footer>
 
-  <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>
