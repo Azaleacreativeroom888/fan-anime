@@ -14,7 +14,6 @@
       --blue-dark: #2a7fc1;
       --yellow: #ffe066;
       --yellow-dark: #f5c200;
-      --pink: #ff8fab;
       --white: #ffffff;
       --offwhite: #f4f9ff;
       --navy: #1a3a5c;
@@ -24,64 +23,36 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: var(--offwhite);
-      color: var(--text);
-      font-family: 'M PLUS Rounded 1c', sans-serif;
-      overflow-x: hidden;
+      background: var(--offwhite); color: var(--text);
+      font-family: 'M PLUS Rounded 1c', sans-serif; overflow-x: hidden;
     }
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
+      content: ''; position: fixed; inset: 0;
       background-image: radial-gradient(circle, var(--blue-light) 1.5px, transparent 1.5px);
-      background-size: 28px 28px;
-      opacity: 0.6;
-      pointer-events: none;
-      z-index: 0;
+      background-size: 28px 28px; opacity: 0.6; pointer-events: none; z-index: 0;
     }
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: var(--blue);
-      border-bottom: 3px solid var(--blue-dark);
+      background: var(--blue); border-bottom: 3px solid var(--blue-dark);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 2.5rem; height: 56px;
     }
-    .nav-logo {
-      font-family: 'Dela Gothic One', cursive;
-      font-size: 1.3rem; color: var(--white); text-decoration: none;
-      letter-spacing: 0.05em; text-shadow: 2px 2px 0 var(--blue-dark);
-    }
+    .nav-logo { font-family: 'Dela Gothic One', cursive; font-size: 1.3rem; color: var(--white); text-decoration: none; letter-spacing: 0.05em; text-shadow: 2px 2px 0 var(--blue-dark); }
     .nav-links { display: flex; gap: 0.3rem; list-style: none; }
-    .nav-links a {
-      display: block; padding: 0.4rem 1rem;
-      font-size: 0.8rem; font-weight: 700; color: var(--white);
-      text-decoration: none; border-radius: 20px; transition: background 0.2s;
-    }
+    .nav-links a { display: block; padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 700; color: var(--white); text-decoration: none; border-radius: 20px; transition: background 0.2s; }
     .nav-links a:hover { background: rgba(255,255,255,0.25); }
     .nav-links a.active { background: var(--white); color: var(--blue-dark); }
 
-    main {
-      position: relative; z-index: 1;
-      max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 5rem;
-    }
+    main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 
     .page-badge {
-      display: inline-block;
-      background: var(--yellow); color: var(--navy);
-      font-size: 0.7rem; font-weight: 900;
-      padding: 0.25rem 1rem; border-radius: 20px;
-      border: 2px solid var(--yellow-dark);
-      margin-bottom: 0.8rem; letter-spacing: 0.1em;
+      display: inline-block; background: var(--yellow); color: var(--navy);
+      font-size: 0.7rem; font-weight: 900; padding: 0.25rem 1rem; border-radius: 20px;
+      border: 2px solid var(--yellow-dark); margin-bottom: 0.8rem; letter-spacing: 0.1em;
       transform: rotate(-1deg);
     }
-
-    .page-title {
-      font-family: 'Dela Gothic One', cursive;
-      font-size: 2.4rem; color: var(--navy); margin-bottom: 0.4rem;
-    }
-
+    .page-title { font-family: 'Dela Gothic One', cursive; font-size: 2.4rem; color: var(--navy); margin-bottom: 0.4rem; }
     .page-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.9; font-weight: 500; }
-
     .divider {
       height: 3px;
       background: repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 12px, transparent 12px, transparent 18px);
@@ -89,94 +60,49 @@
     }
 
     .section-label {
-      font-family: 'Dela Gothic One', cursive;
-      font-size: 1rem; color: var(--blue-dark);
-      margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 0.6rem;
+      font-family: 'Dela Gothic One', cursive; font-size: 1rem; color: var(--blue-dark);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
     }
-    .section-label::after {
-      content: ''; flex: 1; height: 2px;
-      background: linear-gradient(to right, var(--border), transparent);
-    }
+    .section-label::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, var(--border), transparent); }
 
     /* TOP 5 */
     .top5 { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
-
     .top-card {
-      background: var(--white);
-      border: 2.5px solid var(--border);
-      border-radius: 16px;
-      padding: 1.2rem 1.4rem;
-      display: flex; gap: 1.1rem; align-items: flex-start;
+      background: var(--white); border: 2.5px solid var(--border); border-radius: 16px;
+      padding: 1.2rem 1.4rem; display: flex; gap: 1.1rem; align-items: flex-start;
       box-shadow: 3px 3px 0 var(--border);
       transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
     }
     .top-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--blue); border-color: var(--blue); }
-
     .rank-badge {
       min-width: 2.4rem; height: 2.4rem; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Dela Gothic One', cursive;
-      font-size: 1rem; flex-shrink: 0;
+      font-family: 'Dela Gothic One', cursive; font-size: 1rem; flex-shrink: 0;
       border: 2.5px solid currentColor;
     }
     .rank-1 { background: var(--yellow); color: var(--navy); border-color: var(--yellow-dark); box-shadow: 2px 2px 0 var(--yellow-dark); }
     .rank-2 { background: #e8e8f0; color: #555; border-color: #aaa; }
     .rank-3 { background: #fde8d8; color: #9b4e0a; border-color: #e0915c; }
     .rank-n { background: var(--blue-light); color: var(--blue-dark); border-color: var(--blue); }
-
     .card-body { flex: 1; }
-
-    .genre-tag {
-      display: inline-block;
-      font-size: 0.65rem; font-weight: 900;
-      background: var(--blue-light); color: var(--blue-dark);
-      border-radius: 10px; padding: 0.1rem 0.6rem;
-      margin-bottom: 0.4rem;
-      border: 1.5px solid var(--blue);
-    }
-
-    .card-title {
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 1rem; font-weight: 700; color: var(--navy);
-      margin-bottom: 0.3rem;
-    }
-
+    .card-title { font-family: 'Zen Maru Gothic', sans-serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
     .card-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; }
 
-    /* ALL LIST */
+    /* ALL LIST — タイトル＋感想のみ */
     .all-list { display: flex; flex-direction: column; }
-
     .list-item {
-      display: grid;
-      grid-template-columns: 3rem 1fr auto;
-      align-items: center; gap: 0.8rem;
-      padding: 0.85rem 0.5rem;
+      padding: 1rem 0.5rem;
       border-bottom: 1.5px dashed var(--border);
       transition: background 0.15s; border-radius: 8px;
     }
     .list-item:first-child { border-top: 1.5px dashed var(--border); }
     .list-item:hover { background: rgba(91,184,245,0.08); }
-
-    .list-rank {
-      font-family: 'Dela Gothic One', cursive;
-      font-size: 1rem; color: var(--blue); text-align: center;
-    }
-
-    .list-title { font-size: 0.88rem; font-weight: 700; color: var(--text); }
-
-    .list-tag {
-      font-size: 0.62rem; font-weight: 900;
-      background: var(--blue-light); color: var(--blue-dark);
-      border-radius: 10px; padding: 0.1rem 0.5rem;
-      border: 1.5px solid var(--blue); white-space: nowrap;
-    }
+    .list-title { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
+    .list-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; }
 
     footer {
-      position: relative; z-index: 1;
-      background: var(--navy); color: var(--white);
-      padding: 2rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
+      position: relative; z-index: 1; background: var(--navy); color: var(--white);
+      padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1rem;
     }
     .footer-logo { font-family: 'Dela Gothic One', cursive; font-size: 1.1rem; color: var(--yellow); text-shadow: 2px 2px 0 var(--yellow-dark); }
@@ -188,8 +114,6 @@
     @media (max-width: 640px) {
       nav { padding: 0 1rem; }
       .nav-links a { padding: 0.35rem 0.6rem; font-size: 0.72rem; }
-      .list-item { grid-template-columns: 2.5rem 1fr; }
-      .list-tag { display: none; }
       footer { flex-direction: column; text-align: center; }
     }
   </style>
@@ -253,11 +177,26 @@
 
     <div class="section-label">ALL RANKINGS</div>
     <div class="all-list">
-      <div class="list-item"><span class="list-title">とんでもスキルで異世界放浪飯</span><span class="list-tag">アニメ</span></div>
-      <div class="list-item"><span class="list-title">作品タイトル</span><span class="list-tag">アニメ映画</span></div>
-      <div class="list-item"><span class="list-title">作品タイトル</span><span class="list-tag">アニメ</span></div>
-      <div class="list-item"><span class="list-title">作品タイトル</span><span class="list-tag">アニメ</span></div>
-      <div class="list-item"><span class="list-title">作品タイトル</span><span class="list-tag">アニメ映画</span></div>
+      <div class="list-item">
+        <div class="list-title">とんでもスキルで異世界放浪飯</div>
+        <div class="list-text">ここに感想を入れてください。</div>
+      </div>
+      <div class="list-item">
+        <div class="list-title">作品タイトル</div>
+        <div class="list-text">ここに感想を入れてください。</div>
+      </div>
+      <div class="list-item">
+        <div class="list-title">作品タイトル</div>
+        <div class="list-text">ここに感想を入れてください。</div>
+      </div>
+      <div class="list-item">
+        <div class="list-title">作品タイトル</div>
+        <div class="list-text">ここに感想を入れてください。</div>
+      </div>
+      <div class="list-item">
+        <div class="list-title">作品タイトル</div>
+        <div class="list-text">ここに感想を入れてください。</div>
+      </div>
     </div>
   </main>
 
