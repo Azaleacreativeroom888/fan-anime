@@ -23,17 +23,13 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: var(--offwhite);
-      color: var(--text);
-      font-family: 'M PLUS Rounded 1c', sans-serif;
-      overflow-x: hidden;
+      background: var(--offwhite); color: var(--text);
+      font-family: 'M PLUS Rounded 1c', sans-serif; overflow-x: hidden;
     }
     body::before {
-      content: '';
-      position: fixed; inset: 0;
+      content: ''; position: fixed; inset: 0;
       background-image: radial-gradient(circle, var(--blue-light) 1.5px, transparent 1.5px);
-      background-size: 28px 28px; opacity: 0.6;
-      pointer-events: none; z-index: 0;
+      background-size: 28px 28px; opacity: 0.6; pointer-events: none; z-index: 0;
     }
     nav {
       position: sticky; top: 0; z-index: 100;
@@ -50,75 +46,115 @@
     main { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 
     .page-badge {
-      display: inline-block;
-      background: var(--yellow); color: var(--navy);
-      font-size: 0.7rem; font-weight: 900;
-      padding: 0.25rem 1rem; border-radius: 20px;
-      border: 2px solid var(--yellow-dark);
-      margin-bottom: 0.8rem; letter-spacing: 0.1em;
+      display: inline-block; background: var(--yellow); color: var(--navy);
+      font-size: 0.7rem; font-weight: 900; padding: 0.25rem 1rem; border-radius: 20px;
+      border: 2px solid var(--yellow-dark); margin-bottom: 0.8rem; letter-spacing: 0.1em;
       transform: rotate(-1deg);
     }
     .page-title { font-family: 'Dela Gothic One', cursive; font-size: 2.4rem; color: var(--navy); margin-bottom: 0.4rem; }
     .page-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.9; font-weight: 500; }
-
     .divider {
       height: 3px;
       background: repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 12px, transparent 12px, transparent 18px);
       border-radius: 2px; margin: 1.5rem 0 2rem;
     }
-
     .section-label {
       font-family: 'Dela Gothic One', cursive; font-size: 1rem; color: var(--blue-dark);
-      margin-bottom: 1.2rem;
-      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem;
     }
     .section-label::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, var(--border), transparent); }
 
+    /* ── GALLERY GRID ── */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 3rem;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1rem; margin-bottom: 3rem;
     }
 
     .gallery-card {
-      background: var(--white);
-      border: 2.5px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 3px 3px 0 var(--border);
+      background: var(--white); border: 2.5px solid var(--border); border-radius: 14px;
+      overflow: hidden; box-shadow: 3px 3px 0 var(--border);
       transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      cursor: pointer;
     }
     .gallery-card:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--blue); border-color: var(--blue); }
 
+    /* 画像エリア：正方形に固定してはみ出し非表示 */
     .gallery-img {
-      width: 100%; aspect-ratio: 1 / 1;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
       background: var(--blue-light);
       display: flex; align-items: center; justify-content: center;
-      font-size: 3rem;
       border-bottom: 2px solid var(--border);
-      overflow: hidden;
+      font-size: 3rem; /* 画像なしのときの絵文字 */
     }
-
-    .gallery-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;      /* ← 伸び防止：比率を保ってクロップ */
+      object-position: center;
+      display: block;
+    }
 
     .gallery-info { padding: 0.75rem 0.9rem; }
-
-    .gallery-title { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
-
+    .gallery-title { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
     .gallery-tag {
-      display: inline-block;
-      font-size: 0.62rem; font-weight: 900;
+      display: inline-block; font-size: 0.62rem; font-weight: 900;
       background: var(--blue-light); color: var(--blue-dark);
-      border-radius: 10px; padding: 0.1rem 0.5rem;
-      border: 1.5px solid var(--blue);
+      border-radius: 10px; padding: 0.1rem 0.5rem; border: 1.5px solid var(--blue);
     }
 
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(10, 20, 40, 0.85);
+      backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+      padding: 1.5rem;
+    }
+    .lightbox.open { display: flex; }
+
+    .lb-inner {
+      position: relative;
+      max-width: 90vw; max-height: 90vh;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+
+    .lb-img {
+      max-width: 100%; max-height: 78vh;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 3px solid var(--white);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      display: block;
+    }
+
+    .lb-caption {
+      font-family: 'Dela Gothic One', cursive;
+      font-size: 1rem; color: var(--white);
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .lb-close {
+      position: absolute;
+      top: -1rem; right: -1rem;
+      width: 2.4rem; height: 2.4rem;
+      background: var(--yellow); color: var(--navy);
+      border: 2.5px solid var(--yellow-dark);
+      border-radius: 50%;
+      font-size: 1.1rem; font-weight: 900;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 2px 2px 0 var(--yellow-dark);
+      transition: transform 0.15s;
+      line-height: 1;
+    }
+    .lb-close:hover { transform: scale(1.1); }
+
+    /* ── FOOTER ── */
     footer {
-      position: relative; z-index: 1;
-      background: var(--navy); color: var(--white);
-      padding: 2rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
+      position: relative; z-index: 1; background: var(--navy); color: var(--white);
+      padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1rem;
     }
     .footer-logo { font-family: 'Dela Gothic One', cursive; font-size: 1.1rem; color: var(--yellow); text-shadow: 2px 2px 0 var(--yellow-dark); }
@@ -136,6 +172,7 @@
   </style>
 </head>
 <body>
+
   <nav>
     <a href="index.html" class="nav-logo">★ ANIMERIUM</a>
     <ul class="nav-links">
@@ -147,78 +184,94 @@
     </ul>
   </nav>
 
+  <!-- ライトボックス -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lb-inner">
+      <button class="lb-close" onclick="closeLightbox()">✕</button>
+      <img class="lb-img" id="lb-img" src="" alt="">
+      <div class="lb-caption" id="lb-caption"></div>
+    </div>
+  </div>
+
   <main>
     <div class="page-badge">★ GALLERY</div>
     <h1 class="page-title">ギャラリー</h1>
-    <p class="page-desc">自作ファンアートやアニメーションの展示室。すべてオリジナル作品です。</p>
+    <p class="page-desc">自作ファンアートやアニメーションの展示室。すべてオリジナル作品です。クリックで拡大できます。</p>
     <div class="divider"></div>
 
     <div class="section-label">ファンアート</div>
     <div class="gallery-grid">
-      <!-- 画像は src="画像ファイル名" に差し替えてください -->
-      
-      <div class="gallery-card">
-        <div class="gallery-img">🎨</div>
+
+      <div class="gallery-card" onclick="openLightbox('みつみスキップとローファーFA.jpg', 'スキップとローファー')">
+        <div class="gallery-img">
+          <img src="みつみスキップとローファーFA.jpg" alt="みつみ">
+        </div>
         <div class="gallery-info">
           <div class="gallery-title">スキップとローファー</div>
-          <img src="みつみスキップとローファーFA.jpg" alt="みつみ">
           <span class="gallery-tag">ファンアート</span>
         </div>
       </div>
-      
-      <div class="gallery-card">
-        <div class="gallery-img">🎨</div>
+
+      <div class="gallery-card" onclick="openLightbox('ハガレンエド上半身裸.jpg', '鋼の錬金術師')">
+        <div class="gallery-img">
+          <img src="ハガレンエド上半身裸.jpg" alt="エド">
+        </div>
         <div class="gallery-info">
           <div class="gallery-title">鋼の錬金術師</div>
-          <img src="ハガレンエド上半身裸.jpg" alt="エド">
-          <span class="gallery-tag">ファンアート</span>
-        </div>
-      </div>
-      
-      <div class="gallery-card">
-        <div class="gallery-img">🎨</div>
-        <div class="gallery-info">
-          <div class="gallery-title">チェンソーマン</div>
-          <img src="パワーチェンソーマン.jpg" alt="パワー">
           <span class="gallery-tag">ファンアート</span>
         </div>
       </div>
 
-      <div class="gallery-card">
-        <div class="gallery-img">🎨</div>
+      <div class="gallery-card" onclick="openLightbox('パワーチェンソーマン.jpg', 'チェンソーマン')">
+        <div class="gallery-img">
+          <img src="パワーチェンソーマン.jpg" alt="パワー">
+        </div>
         <div class="gallery-info">
           <div class="gallery-title">チェンソーマン</div>
-          <img src="モズDrStoneFA.jpg" alt="Dr.STONE">
           <span class="gallery-tag">ファンアート</span>
         </div>
       </div>
-      
-      <div class="gallery-card">
-        <div class="gallery-img">🎨</div>
+
+      <div class="gallery-card" onclick="openLightbox('モズDrStoneFA.jpg', 'Dr.STONE')">
+        <div class="gallery-img">
+          <img src="モズDrStoneFA.jpg" alt="Dr.STONE">
+        </div>
+        <div class="gallery-info">
+          <div class="gallery-title">Dr.STONE</div>
+          <span class="gallery-tag">ファンアート</span>
+        </div>
+      </div>
+
+      <div class="gallery-card" onclick="openLightbox('犬夜叉かごめラブ.jpg', '犬夜叉')">
+        <div class="gallery-img">
+          <img src="犬夜叉かごめラブ.jpg" alt="かごめ">
+        </div>
         <div class="gallery-info">
           <div class="gallery-title">犬夜叉</div>
-          <img src="犬夜叉かごめラブ.jpg" alt="かごめ">
           <span class="gallery-tag">ファンアート</span>
         </div>
       </div>
 
-      <div class="gallery-card">
-        <div class="gallery-img">🎨</div>
+      <div class="gallery-card" onclick="openLightbox('葬送のフリーレンフリーレンFA.jpg', '葬送のフリーレン')">
+        <div class="gallery-img">
+          <img src="葬送のフリーレンフリーレンFA.jpg" alt="フリーレン">
+        </div>
         <div class="gallery-info">
           <div class="gallery-title">葬送のフリーレン</div>
-          <img src="葬送のフリーレンフリーレンFA.jpg" alt="フリーレン">
           <span class="gallery-tag">ファンアート</span>
         </div>
       </div>
 
-      <div class="gallery-card">
-        <div class="gallery-img">🎨</div>
-        <div class="gallery-info">
-          <div class="gallery-title">魔入りました入魔くん</div>
+      <div class="gallery-card" onclick="openLightbox('魔入りましたクララ.jpg', '魔入りました！入間くん')">
+        <div class="gallery-img">
           <img src="魔入りましたクララ.jpg" alt="クララ">
+        </div>
+        <div class="gallery-info">
+          <div class="gallery-title">魔入りました！入間くん</div>
           <span class="gallery-tag">ファンアート</span>
         </div>
       </div>
+
     </div>
 
     <div class="section-label">アニメーション</div>
@@ -251,5 +304,28 @@
     </ul>
     <span class="footer-copy">© 2025 ANIMERIUM</span>
   </footer>
+
+  <script>
+    function openLightbox(src, caption) {
+      document.getElementById('lb-img').src = src;
+      document.getElementById('lb-img').alt = caption;
+      document.getElementById('lb-caption').textContent = caption;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      // 画像本体クリックは閉じない
+      if (e && e.target.classList.contains('lb-img')) return;
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ESCキーで閉じる
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
 </body>
 </html>
