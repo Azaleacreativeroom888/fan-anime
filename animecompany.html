@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アニメ会社比較 | ANIMERIUM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;700;900&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #5bb8f5;
+      --blue-light: #d6effe;
+      --blue-dark: #2a7fc1;
+      --yellow: #ffe066;
+      --yellow-dark: #f5c200;
+      --white: #ffffff;
+      --offwhite: #f4f9ff;
+      --navy: #1a3a5c;
+      --text: #1a2a3a;
+      --text-muted: #5a7a9a;
+      --border: #b8d8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--offwhite); color: var(--text);
+      font-family: 'M PLUS Rounded 1c', sans-serif; overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, var(--blue-light) 1.5px, transparent 1.5px);
+      background-size: 28px 28px; opacity: 0.6; pointer-events: none; z-index: 0;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blue); border-bottom: 3px solid var(--blue-dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 56px;
+    }
+    .nav-logo { font-family: 'Dela Gothic One', cursive; font-size: 1.3rem; color: var(--white); text-decoration: none; letter-spacing: 0.05em; text-shadow: 2px 2px 0 var(--blue-dark); }
+    .nav-links { display: flex; gap: 0.3rem; list-style: none; }
+    .nav-links a { display: block; padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 700; color: var(--white); text-decoration: none; border-radius: 20px; transition: background 0.2s; }
+    .nav-links a:hover { background: rgba(255,255,255,0.25); }
+    .nav-links a.active { background: var(--white); color: var(--blue-dark); }
+
+    main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+    .page-badge {
+      display: inline-block; background: var(--yellow); color: var(--navy);
+      font-size: 0.7rem; font-weight: 900; padding: 0.25rem 1rem; border-radius: 20px;
+      border: 2px solid var(--yellow-dark); margin-bottom: 0.8rem; letter-spacing: 0.1em;
+      transform: rotate(-1deg);
+    }
+    .page-title { font-family: 'Dela Gothic One', cursive; font-size: 2.4rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .page-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.9; font-weight: 500; }
+    .divider {
+      height: 3px;
+      background: repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 12px, transparent 12px, transparent 18px);
+      border-radius: 2px; margin: 1.5rem 0 2rem;
+    }
+
+    .section-label {
+      font-family: 'Dela Gothic One', cursive; font-size: 1rem; color: var(--blue-dark);
+      margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, var(--border), transparent); }
+
+    /* ── COMPANY CARDS ── */
+    .company-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
+
+    .company-card {
+      background: var(--white); border: 2.5px solid var(--border); border-radius: 16px;
+      padding: 1.4rem 1.6rem;
+      box-shadow: 3px 3px 0 var(--border);
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .company-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--blue); border-color: var(--blue); }
+
+    .company-header {
+      display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.8rem; flex-wrap: wrap;
+    }
+
+    .company-name {
+      font-family: 'Dela Gothic One', cursive; font-size: 1.15rem; color: var(--navy);
+    }
+
+    .company-tag {
+      display: inline-block; font-size: 0.65rem; font-weight: 900;
+      background: var(--blue-light); color: var(--blue-dark);
+      border-radius: 10px; padding: 0.1rem 0.65rem; border: 1.5px solid var(--blue);
+    }
+
+    .company-works {
+      font-size: 0.78rem; font-weight: 700; color: var(--blue-dark);
+      margin-bottom: 0.5rem; letter-spacing: 0.03em;
+    }
+
+    .company-works span {
+      display: inline-block;
+      background: var(--offwhite); border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 0.1rem 0.55rem;
+      margin: 0.15rem 0.2rem 0.15rem 0;
+      font-weight: 700; color: var(--navy);
+    }
+
+    .company-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.85; }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+      background: var(--white); border: 2.5px solid var(--border); border-radius: 30px;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.82rem; font-weight: 700; color: var(--blue-dark);
+      box-shadow: 2px 2px 0 var(--border);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .back-link:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--blue); border-color: var(--blue); }
+
+    footer {
+      position: relative; z-index: 1; background: var(--navy); color: var(--white);
+      padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: 'Dela Gothic One', cursive; font-size: 1.1rem; color: var(--yellow); text-shadow: 2px 2px 0 var(--yellow-dark); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a { padding: 0.35rem 0.6rem; font-size: 0.72rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">★ ANIMERIUM</a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="ranking.html">RANKING</a></li>
+      <li><a href="gallery.html" class="active">GALLERY</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-badge">★ GALLERY / 関連ページ</div>
+    <h1 class="page-title">アニメ会社比較</h1>
+    <p class="page-desc">主要アニメ制作会社の特徴・代表作をまとめた個人的なメモです。随時更新中。</p>
+    <div class="divider"></div>
+
+    <div class="section-label">制作会社一覧</div>
+    <div class="company-list">
+
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name">京都アニメーション</div>
+          <span class="company-tag">京アニ</span>
+        </div>
+        <div class="company-works">代表作：<span>涼宮ハルヒの憂鬱</span><span>けいおん！</span><span>ヴァイオレット・エヴァーガーデン</span><span>響け！ユーフォニアム</span></div>
+        <div class="company-desc">映像美・作画クオリティの高さで知られる。日常描写や感情表現が繊細で、キャラクターの動きに圧倒的なこだわりがある。光と色の使い方が特徴的。</div>
+      </div>
+
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name">ufotable</div>
+          <span class="company-tag">神作画</span>
+        </div>
+        <div class="company-works">代表作：<span>鬼滅の刃</span><span>Fate/Zero</span><span>テイルズオブシリーズ</span></div>
+        <div class="company-desc">2Dと3DCGを融合させたバトルシーンの迫力が圧巻。特にエフェクト作画のクオリティは業界トップクラス。劇場版並みのクオリティをテレビでやってしまう会社。</div>
+      </div>
+
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name">MAPPA</div>
+          <span class="company-tag">話題作多数</span>
+        </div>
+        <div class="company-works">代表作：<span>進撃の巨人（最終章）</span><span>呪術廻戦</span><span>チェンソーマン</span></div>
+        <div class="company-desc">近年の覇権アニメを次々と手がける注目スタジオ。作品ごとに作風が大きく異なるのが特徴。スタッフへの負担問題も話題になることが多い。</div>
+      </div>
+
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name">ボンズ</div>
+          <span class="company-tag">アクション</span>
+        </div>
+        <div class="company-works">代表作：<span>鋼の錬金術師</span><span>僕のヒーローアカデミア</span><span>スクライド</span></div>
+        <div class="company-desc">アクションシーンの作画が得意で、バトルアニメの安定感が高い。原作ファンからの評価も高く、再現度を大切にする姿勢がある。</div>
+      </div>
+
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name">WIT STUDIO</div>
+          <span class="company-tag">演出力</span>
+        </div>
+        <div class="company-works">代表作：<span>進撃の巨人（1〜3期）</span><span>SPY×FAMILY</span><span>スキップとローファー</span></div>
+        <div class="company-desc">躍動感のある演出と感情に訴えるカット割りが特徴。日常系からダークファンタジーまで幅広く対応できる引き出しの多さがある。</div>
+      </div>
+
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name">CloverWorks</div>
+          <span class="company-tag">少女漫画・ラブコメ</span>
+        </div>
+        <div class="company-works">代表作：<span>着せ替え人形は恋をする</span><span>その着せ替え人形は恋をする</span><span>ミステリア</span></div>
+        <div class="company-desc">ラブコメ・少女漫画系の原作との相性がよく、キャラクターの表情や仕草の描写が丁寧。近年は話題作を連発している。</div>
+      </div>
+
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name">A-1 Pictures</div>
+          <span class="company-tag">量産型・安定</span>
+        </div>
+        <div class="company-works">代表作：<span>ソードアート・オンライン</span><span>四月は君の嘘</span><span>魔法科高校の劣等生</span></div>
+        <div class="company-desc">アニプレックス系の大型タイトルを多数手がける。安定した作画と大規模制作が強み。作品数が多い分、クオリティにばらつきがある印象も。</div>
+      </div>
+
+    </div>
+
+    <a href="gallery.html" class="back-link">← ギャラリーに戻る</a>
+  </main>
+
+  <footer>
+    <div class="footer-logo">★ ANIMERIUM</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="ranking.html">Ranking</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <span class="footer-copy">© 2025 ANIMERIUM</span>
+  </footer>
+
+</body>
+</html>
