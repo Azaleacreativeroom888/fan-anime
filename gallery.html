@@ -104,6 +104,28 @@
       border-radius: 10px; padding: 0.1rem 0.5rem; border: 1.5px solid var(--blue);
     }
 
+    /* ── LINK BOX ── */
+    .link-box-grid { margin-bottom: 3rem; }
+
+    .link-box {
+      display: flex; align-items: center; gap: 1.1rem;
+      text-decoration: none;
+      background: var(--white); border: 2.5px solid var(--border); border-radius: 14px;
+      padding: 1.1rem 1.3rem;
+      box-shadow: 3px 3px 0 var(--border);
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .link-box:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--blue); border-color: var(--blue); }
+
+    .link-box-icon { font-size: 2rem; flex-shrink: 0; }
+
+    .link-box-body { flex: 1; }
+    .link-box-title { font-family: 'Dela Gothic One', cursive; font-size: 1rem; color: var(--navy); margin-bottom: 0.25rem; }
+    .link-box-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+
+    .link-box-arrow { font-size: 1.3rem; font-weight: 900; color: var(--blue); transition: transform 0.2s; flex-shrink: 0; }
+    .link-box:hover .link-box-arrow { transform: translateX(4px); }
+
     /* ── LIGHTBOX ── */
     .lightbox {
       display: none;
@@ -272,6 +294,18 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="section-label">関連ページ</div>
+    <div class="link-box-grid">
+      <a href="animecompany.html" class="link-box">
+        <div class="link-box-icon">🏢</div>
+        <div class="link-box-body">
+          <div class="link-box-title">アニメ会社比較</div>
+          <div class="link-box-desc">制作会社ごとの特徴・代表作をまとめました</div>
+        </div>
+        <div class="link-box-arrow">→</div>
+      </a>
     </div>
 
     <div class="section-label">アニメーション</div>
