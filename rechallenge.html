@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>再チャレンジ記録 | ANIMERIUM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;700;900&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #5bb8f5; --blue-light: #d6effe; --blue-dark: #2a7fc1;
+      --yellow: #ffe066; --yellow-dark: #f5c200;
+      --white: #ffffff; --offwhite: #f4f9ff;
+      --navy: #1a3a5c; --text: #1a2a3a; --text-muted: #5a7a9a; --border: #b8d8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--offwhite); color: var(--text); font-family: 'M PLUS Rounded 1c', sans-serif; overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, var(--blue-light) 1.5px, transparent 1.5px);
+      background-size: 28px 28px; opacity: 0.6; pointer-events: none; z-index: 0;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blue); border-bottom: 3px solid var(--blue-dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 56px;
+    }
+    .nav-logo { font-family: 'Dela Gothic One', cursive; font-size: 1.3rem; color: var(--white); text-decoration: none; letter-spacing: 0.05em; text-shadow: 2px 2px 0 var(--blue-dark); }
+    .nav-links { display: flex; gap: 0.3rem; list-style: none; }
+    .nav-links a { display: block; padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 700; color: var(--white); text-decoration: none; border-radius: 20px; transition: background 0.2s; }
+    .nav-links a:hover { background: rgba(255,255,255,0.25); }
+    .nav-links a.active { background: var(--white); color: var(--blue-dark); }
+
+    main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+    .page-badge {
+      display: inline-block; background: var(--yellow); color: var(--navy);
+      font-size: 0.7rem; font-weight: 900; padding: 0.25rem 1rem; border-radius: 20px;
+      border: 2px solid var(--yellow-dark); margin-bottom: 0.8rem; letter-spacing: 0.1em;
+      transform: rotate(-1deg);
+    }
+    .page-title { font-family: 'Dela Gothic One', cursive; font-size: 2.2rem; color: var(--navy); margin-bottom: 0.4rem; line-height: 1.2; }
+    .page-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.9; font-weight: 500; }
+    .divider {
+      height: 3px;
+      background: repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 12px, transparent 12px, transparent 18px);
+      border-radius: 2px; margin: 1.5rem 0 2rem;
+    }
+
+    .section-label {
+      font-family: 'Dela Gothic One', cursive; font-size: 1rem; color: var(--blue-dark);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, var(--border), transparent); }
+
+    .entry-list { display: flex; flex-direction: column; }
+
+    .entry {
+      padding: 1.2rem 0.5rem;
+      border-bottom: 1.5px dashed var(--border);
+      transition: background 0.15s; border-radius: 8px;
+    }
+    .entry:first-child { border-top: 1.5px dashed var(--border); }
+    .entry:hover { background: rgba(91,184,245,0.08); }
+
+    .entry-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+
+    .entry-title { font-family: 'Zen Maru Gothic', sans-serif; font-size: 1rem; font-weight: 700; color: var(--navy); }
+
+    .status-badge {
+      font-size: 0.65rem; font-weight: 900; padding: 0.15rem 0.65rem; border-radius: 20px;
+      border: 1.5px solid; white-space: nowrap;
+    }
+    .status-pending { background: #fff8e1; color: #b8860b; border-color: #f5c200; }
+    .status-done    { background: #e8f5e9; color: #2e7d32; border-color: #66bb6a; }
+    .status-drop    { background: #fce4ec; color: #c2185b; border-color: #f48fb1; }
+
+    .entry-before { font-size: 0.78rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 0.4rem; }
+    .entry-before::before { content: '1回目：'; font-weight: 700; color: var(--blue-dark); }
+
+    .entry-after { font-size: 0.78rem; color: var(--text); line-height: 1.75; }
+    .entry-after::before { content: '再チャレンジ後：'; font-weight: 700; color: #2e7d32; }
+
+    .entry-after.pending { color: var(--text-muted); font-style: italic; }
+    .entry-after.pending::before { content: '再チャレンジ予定：'; font-weight: 700; color: #b8860b; }
+
+    .entry-review { font-size: 0.78rem; margin-top: 0.4rem; }
+    .entry-review-label { font-weight: 700; color: #9c27b0; }
+    .entry-review-text {
+      display: block;
+      background: #f3e5f5;
+      border-left: 3px solid #ce93d8;
+      padding: 0.4rem 0.7rem;
+      margin-top: 0.25rem;
+      font-style: italic;
+      color: #5a3a6a;
+      line-height: 1.75;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;
+      background: var(--white); border: 2.5px solid var(--border); border-radius: 30px;
+      padding: 0.6rem 1.4rem; font-size: 0.82rem; font-weight: 700; color: var(--blue-dark);
+      box-shadow: 2px 2px 0 var(--border); transition: transform 0.15s, box-shadow 0.15s;
+      margin-top: 2rem; display: inline-flex;
+    }
+    .back-link:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--blue); border-color: var(--blue); }
+
+    footer {
+      position: relative; z-index: 1; background: var(--navy); color: var(--white);
+      padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: 'Dela Gothic One', cursive; font-size: 1.1rem; color: var(--yellow); text-shadow: 2px 2px 0 var(--yellow-dark); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a { padding: 0.35rem 0.6rem; font-size: 0.72rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">★ ANIMERIUM</a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="ranking.html" class="active">RANKING</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-badge">★ RANKING / 再チャレンジ</div>
+    <h1 class="page-title">1回観て面白くなかったアニメに再チャレンジ</h1>
+    <p class="page-desc">最初はピンとこなかったけど、もう一度観てみたい作品の記録。印象が変わったら更新していきます。</p>
+    <div class="divider"></div>
+
+    <div class="section-label">再チャレンジリスト</div>
+    <div class="entry-list">
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">化物語</div>
+          <span class="status-badge status-done">再チャレンジ済</span>
+        </div>
+        <div class="entry-before">とにかく難しい。テンポが悪くて時間が長く感じる。会話が長い。</div>
+        <div class="entry-after">ここに再チャレンジ後の感想を書いてください。</div>
+        <div class="entry-review">
+          <span class="entry-review-label">高評価口コミ：</span>
+          <span class="entry-review-text">☑戦場ヶ原が魅力的<br>
+          ☑画面がスタイリッシュ<br>
+          ☑伏線回収がすごい<br>
+          ☑ウィットに富んだセリフ<br>
+          ☑言葉遊びのような会話劇<br>
+          ☑怪異が出てくる</span>
+        </div>
+      </div>
+
+      <!-- 追加用テンプレート
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">作品タイトル</div>
+          <span class="status-badge status-pending">再チャレンジ予定</span>
+        </div>
+        <div class="entry-before">1回目の感想</div>
+        <div class="entry-after pending">まだ再チャレンジできていません。</div>
+        <div class="entry-review">
+          <span class="entry-review-label">高評価口コミ：</span>
+          <span class="entry-review-text">口コミテキスト</span>
+        </div>
+      </div>
+      -->
+
+    </div>
+
+    <a href="ranking.html" class="back-link">← ランキングに戻る</a>
+  </main>
+
+  <footer>
+    <div class="footer-logo">★ ANIMERIUM</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="ranking.html">Ranking</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <span class="footer-copy">© 2025 ANIMERIUM</span>
+  </footer>
+</body>
+</html>
