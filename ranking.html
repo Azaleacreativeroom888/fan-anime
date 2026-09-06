@@ -9,23 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;700;900&family=Dela+Gothic+One&display=swap" rel="stylesheet">
   <style>
     :root {
-      --blue: #5bb8f5;
-      --blue-light: #d6effe;
-      --blue-dark: #2a7fc1;
-      --yellow: #ffe066;
-      --yellow-dark: #f5c200;
-      --white: #ffffff;
-      --offwhite: #f4f9ff;
-      --navy: #1a3a5c;
-      --text: #1a2a3a;
-      --text-muted: #5a7a9a;
-      --border: #b8d8f0;
+      --blue: #5bb8f5; --blue-light: #d6effe; --blue-dark: #2a7fc1;
+      --yellow: #ffe066; --yellow-dark: #f5c200;
+      --white: #ffffff; --offwhite: #f4f9ff;
+      --navy: #1a3a5c; --text: #1a2a3a; --text-muted: #5a7a9a; --border: #b8d8f0;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: var(--offwhite); color: var(--text);
-      font-family: 'M PLUS Rounded 1c', sans-serif; overflow-x: hidden;
-    }
+    body { background: var(--offwhite); color: var(--text); font-family: 'M PLUS Rounded 1c', sans-serif; overflow-x: hidden; }
     body::before {
       content: ''; position: fixed; inset: 0;
       background-image: radial-gradient(circle, var(--blue-light) 1.5px, transparent 1.5px);
@@ -45,41 +35,18 @@
 
     main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 
-    .page-badge {
-      display: inline-block; background: var(--yellow); color: var(--navy);
-      font-size: 0.7rem; font-weight: 900; padding: 0.25rem 1rem; border-radius: 20px;
-      border: 2px solid var(--yellow-dark); margin-bottom: 0.8rem; letter-spacing: 0.1em;
-      transform: rotate(-1deg);
-    }
+    .page-badge { display: inline-block; background: var(--yellow); color: var(--navy); font-size: 0.7rem; font-weight: 900; padding: 0.25rem 1rem; border-radius: 20px; border: 2px solid var(--yellow-dark); margin-bottom: 0.8rem; letter-spacing: 0.1em; transform: rotate(-1deg); }
     .page-title { font-family: 'Dela Gothic One', cursive; font-size: 2.4rem; color: var(--navy); margin-bottom: 0.4rem; }
     .page-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.9; font-weight: 500; }
-    .divider {
-      height: 3px;
-      background: repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 12px, transparent 12px, transparent 18px);
-      border-radius: 2px; margin: 1.5rem 0 2rem;
-    }
+    .divider { height: 3px; background: repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 12px, transparent 12px, transparent 18px); border-radius: 2px; margin: 1.5rem 0 2rem; }
 
-    .section-label {
-      font-family: 'Dela Gothic One', cursive; font-size: 1rem; color: var(--blue-dark);
-      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
-    }
+    .section-label { font-family: 'Dela Gothic One', cursive; font-size: 1rem; color: var(--blue-dark); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
     .section-label::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, var(--border), transparent); }
 
-    /* TOP 5 */
     .top5 { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
-    .top-card {
-      background: var(--white); border: 2.5px solid var(--border); border-radius: 16px;
-      padding: 1.2rem 1.4rem; display: flex; gap: 1.1rem; align-items: flex-start;
-      box-shadow: 3px 3px 0 var(--border);
-      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
-    }
+    .top-card { background: var(--white); border: 2.5px solid var(--border); border-radius: 16px; padding: 1.2rem 1.4rem; display: flex; gap: 1.1rem; align-items: flex-start; box-shadow: 3px 3px 0 var(--border); transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; }
     .top-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--blue); border-color: var(--blue); }
-    .rank-badge {
-      min-width: 2.4rem; height: 2.4rem; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Dela Gothic One', cursive; font-size: 1rem; flex-shrink: 0;
-      border: 2.5px solid currentColor;
-    }
+    .rank-badge { min-width: 2.4rem; height: 2.4rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Dela Gothic One', cursive; font-size: 1rem; flex-shrink: 0; border: 2.5px solid currentColor; }
     .rank-1 { background: var(--yellow); color: var(--navy); border-color: var(--yellow-dark); box-shadow: 2px 2px 0 var(--yellow-dark); }
     .rank-2 { background: #e8e8f0; color: #555; border-color: #aaa; }
     .rank-3 { background: #fde8d8; color: #9b4e0a; border-color: #e0915c; }
@@ -88,23 +55,31 @@
     .card-title { font-family: 'Zen Maru Gothic', sans-serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
     .card-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; }
 
-    /* ALL LIST — タイトル＋感想のみ */
     .all-list { display: flex; flex-direction: column; }
-    .list-item {
-      padding: 1rem 0.5rem;
-      border-bottom: 1.5px dashed var(--border);
-      transition: background 0.15s; border-radius: 8px;
-    }
+    .list-item { padding: 1rem 0.5rem; border-bottom: 1.5px dashed var(--border); transition: background 0.15s; border-radius: 8px; }
     .list-item:first-child { border-top: 1.5px dashed var(--border); }
     .list-item:hover { background: rgba(91,184,245,0.08); }
     .list-title { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
     .list-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; }
 
-    footer {
-      position: relative; z-index: 1; background: var(--navy); color: var(--white);
-      padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
+    /* インラインリンク */
+    .inline-link {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 900;
+      color: var(--blue-dark);
+      background: var(--blue-light);
+      border: 1.5px solid var(--blue);
+      border-radius: 20px;
+      padding: 0.1rem 0.7rem;
+      text-decoration: none;
+      margin-left: 0.5rem;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.15s;
+      vertical-align: middle;
     }
+    .inline-link:hover { background: var(--blue); color: var(--white); transform: translateY(-1px); }
+
+    footer { position: relative; z-index: 1; background: var(--navy); color: var(--white); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
     .footer-logo { font-family: 'Dela Gothic One', cursive; font-size: 1.1rem; color: var(--yellow); text-shadow: 2px 2px 0 var(--yellow-dark); }
     .footer-links { display: flex; gap: 1.5rem; list-style: none; }
     .footer-links a { font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
@@ -142,8 +117,7 @@
         <div class="rank-badge rank-1">1</div>
         <div class="card-body">
           <div class="card-title">無職転生</div>
-          <div class="card-text">絵、ストーリー、友情、恋愛すべてが最高ななろう系アニメ。
-            それでいて新しい発見もある。メタ的なものが少ないから分かりやすい。</div>
+          <div class="card-text">絵、ストーリー、友情、恋愛すべてが最高ななろう系アニメ。それでいて新しい発見もある。メタ的なものが少ないから分かりやすい。</div>
         </div>
       </div>
       <div class="top-card">
@@ -164,8 +138,7 @@
         <div class="rank-badge rank-n">4</div>
         <div class="card-body">
           <div class="card-title">閃光のハサウェイ</div>
-          <div class="card-text">このアニメが一番ガンダムで面白い。10回は最低でも観た。
-          このアニメ観るとハサウェイのことを考えてしまう。</div>
+          <div class="card-text">このアニメが一番ガンダムで面白い。10回は最低でも観た。このアニメ観るとハサウェイのことを考えてしまう。</div>
         </div>
       </div>
       <div class="top-card">
@@ -179,311 +152,74 @@
 
     <div class="section-label">ALL RANKINGS</div>
     <div class="all-list">
+      <div class="list-item"><div class="list-title">血界戦線</div><div class="list-text">最初はとっつきにくいんだけど、回を追うごとに面白さが増す。中毒性も高くて何回も観たくなってしまう。</div></div>
+      <div class="list-item"><div class="list-title">デジモン（初代）</div><div class="list-text">思い出補正が強いけど、やっぱり子供のころに観た「選ばれし者」とか「モンスターの友情」とかワクワクすることだらけ。デジモンはバトルが観たいんじゃなくて、友情が観たい。</div></div>
+      <div class="list-item"><div class="list-title">ヴァイオレット・エヴァーガーデン</div><div class="list-text">最高。１話完結のストーリーで、人によって感動する話は変わると思う。</div></div>
+      <div class="list-item"><div class="list-title">逃げ上手の若君</div><div class="list-text">めっちゃ面白い。時代劇も好きだから最高。</div></div>
+      <div class="list-item"><div class="list-title">鬼滅の刃</div><div class="list-text">映像がすごすぎて圧巻。</div></div>
+      <div class="list-item"><div class="list-title">薬屋のひとりごと</div><div class="list-text">毎週楽しみにしてた。面白かった。人間ドラマが面白い。</div></div>
+      <div class="list-item"><div class="list-title">サイコパス</div><div class="list-text">面白かったし、興味深い。AI時代が来て、こういう未来もあるんじゃないかと思った。</div></div>
+      <div class="list-item"><div class="list-title">モブサイコ100</div><div class="list-text">まじで面白かった。一気見した。こういう脱力系の主人公が新しくて良かった。</div></div>
+      <div class="list-item"><div class="list-title">葬送のフリーレン</div><div class="list-text">シーズン１よりもシーズン２のほうが面白い。シーズン２よりシーズン３のほうが面白い。だんだん面白くなっていくアニメ。キャラも良いんだよね。</div></div>
+      <div class="list-item"><div class="list-title">銀河特急 ミルキー☆サブウェイ</div><div class="list-text">５分でサクッと見れるし面白いし、メジェド可愛い。</div></div>
+      <div class="list-item"><div class="list-title">逆襲のシャア</div><div class="list-text">面白い。閃光のハサウェイ観る前に観たかった。</div></div>
+      <div class="list-item"><div class="list-title">銀魂</div><div class="list-text">汚いシーンもいっぱいあるけど面白い。キャラで観れる作品。</div></div>
+      <div class="list-item"><div class="list-title">かぐや様は告らせたい</div><div class="list-text">面白い。憧れと共感で一気見できる。</div></div>
+      <div class="list-item"><div class="list-title">グレンラガン</div><div class="list-text">熱い男のアニメ。推しはヴィラル。</div></div>
+      <div class="list-item"><div class="list-title">ぼっちざろっく</div><div class="list-text">面白かった。ぼっちちゃんが可愛かった。</div></div>
+      <div class="list-item"><div class="list-title">水星の魔女</div><div class="list-text">面白かった。キャラが良いし、声優も良いし。SFっぽさががっつりあるのがこのガンダムなんじゃないかと思う。</div></div>
+      <div class="list-item"><div class="list-title">コードギアス　反逆のルルーシュ</div><div class="list-text">面白かった。戦闘シーンもすごかった。スザクカッコいい。</div></div>
+      <div class="list-item"><div class="list-title">鋼の錬金術師</div><div class="list-text">名作だと思う。伏線回収も綺麗にするし、構成がしっかりしてるストーリー。声優も豪華。</div></div>
+      <div class="list-item"><div class="list-title">エウレカセブン</div><div class="list-text">面白い。音楽も映像もスタイリッシュ。</div></div>
+      <div class="list-item"><div class="list-title">Gガンダム</div><div class="list-text">ガンダム作品の中でかなり面白い。分かりやすいのでガンダム作品初心者ならこれから観てほしい。</div></div>
+      <div class="list-item"><div class="list-title">とんでもスキルで異世界放浪飯</div><div class="list-text">メタ的なのは苦手だけど、面白い。美味しい料理がでてくるストーリーは大体が面白い。</div></div>
+      <div class="list-item"><div class="list-title">本好きの下剋上</div><div class="list-text">面白い。本が好きな人は観てほしい。主人公が貪欲なのが良い。</div></div>
+      <div class="list-item"><div class="list-title">神々の記</div><div class="list-text">可愛い。森川智之が歌ってるオープニング覚えちゃう（笑）</div></div>
+      <div class="list-item"><div class="list-title">鉄血のオルフェンズ</div><div class="list-text">めっちゃ面白い。でもシーズン２はネタ化する理由がよくわかる。</div></div>
+      <div class="list-item"><div class="list-title">Dr.STONE</div><div class="list-text">ジャンプのSF漫画。最初の村でストーリーが一番面白いんだよね。</div></div>
+      <div class="list-item"><div class="list-title">SEED</div><div class="list-text">面白いけど、ネットでのネタ化されたのを先に観ちゃったから笑ってしまった。</div></div>
+      <div class="list-item"><div class="list-title">片田舎のおっさん、剣聖になる</div><div class="list-text">面白い。キャラへの"憧れ"で観るアニメだよね。こう将来なれたらな……って思う。</div></div>
+      <div class="list-item"><div class="list-title">ガンダムF91</div><div class="list-text">当時の色味で懐かしさがある。面白かった。</div></div>
+      <div class="list-item"><div class="list-title">マクロスプラス</div><div class="list-text">面白い。すごく大人なアニメ。</div></div>
+      <div class="list-item"><div class="list-title">オーバーロード</div><div class="list-text">面白かった。ただちょっとグロい。</div></div>
+      <div class="list-item"><div class="list-title">NARUTO</div><div class="list-text">面白い。構図と動きが最高なのよね。今見ると声優が豪華すぎる。</div></div>
+      <div class="list-item"><div class="list-title">ソードアートオンライン</div><div class="list-text">ゲーム世界のストーリーって苦手なんだけど面白かった。</div></div>
+      <div class="list-item"><div class="list-title">ジョジョの奇妙な冒険</div><div class="list-text">最初はとっつきにくいんだけど、キャラで観ると面白くなる。グロいけど、意外と少年漫画してるんだよね。</div></div>
+      <div class="list-item"><div class="list-title">【推しの子】</div><div class="list-text">シーズン２の2.5次元舞台を中心に回っていくストーリーが一番面白い。</div></div>
+      <div class="list-item"><div class="list-title">夏目友人帳</div><div class="list-text">癒されたいときに観てる。アニメの制作陣に愛を感じる。この作品を好きな人は本当に好きだと思う。</div></div>
+      <div class="list-item"><div class="list-title">シュタインズゲート</div><div class="list-text">途中までストーリーがゆっくり進行するのでギブアップしそうになる。でも何が起こってるか真相が分かってからが面白い。</div></div>
+      <div class="list-item"><div class="list-title">桜蘭高校ホスト部</div><div class="list-text">高校でホスト部をやるっていうコンセプトは嫌いなんだけど、ストーリーはコミカルで楽しい。</div></div>
+      <div class="list-item"><div class="list-title">ガンダムW</div><div class="list-text">キャラで観ると面白い。ヒイロがフィジカルおばけで面白い。SEEDのコーディネーターより強いかもしれない。</div></div>
+      <div class="list-item"><div class="list-title">転生したらスライムだった件</div><div class="list-text">面白いけど、メタ的なものが多くて苦手。</div></div>
+      <div class="list-item"><div class="list-title">新世紀エヴァンゲリオン</div><div class="list-text">一気見した。面白いけどちょっと難しい。アニメ版より映画版のほうが分かりやすい。</div></div>
+      <div class="list-item"><div class="list-title">５等分の花嫁</div><div class="list-text">恋愛ものは苦手なんだけど、誰と結婚するのか予想するのにミステリー要素もちょっとあって楽しかった。</div></div>
+      <div class="list-item"><div class="list-title">呪術廻戦</div><div class="list-text">面白いんだけどグロい。大人っぽい内容だけど友情と青春してるところは少年漫画だなと思う。五条悟の過去編は最高だった。</div></div>
+      <div class="list-item"><div class="list-title">東のエデン</div><div class="list-text">面白いけど、エンディングに納得はいってない。</div></div>
+      <div class="list-item"><div class="list-title">魔法少女まどか☆マギカ</div><div class="list-text">面白いけど、途中で何が起こってるのか分からなくなる。</div></div>
+      <div class="list-item"><div class="list-title">モンスターハンターストーリーズ RIDE ON</div><div class="list-text">途中でかなりテンポが悪くなるんだけど、なんとか最後まで観た。面白かったんだけど、とにかくテンポが悪い。キャラデザとか絵は良い。</div></div>
+      <div class="list-item"><div class="list-title">ガンダム00</div><div class="list-text">面白いんだけど勢力図が分かりにくい。</div></div>
+      <div class="list-item"><div class="list-title">ピーナッツくん</div><div class="list-text">次の展開が分からないギャグに既視感（ボー〇〇）を感じる。</div></div>
+      <div class="list-item"><div class="list-title">ワンパンマン</div><div class="list-text">マーベル系のヒーローものって苦手なんだよね……。</div></div>
+      <div class="list-item"><div class="list-title">ハンターハンター</div><div class="list-text">一番好きなのはキメラアント編。グリードアイランド編はちょっと難しい。とっつきにくいところと面白いところがある。</div></div>
+      <div class="list-item"><div class="list-title">ブルーロック</div><div class="list-text">アイデアは面白い。</div></div>
+      <div class="list-item"><div class="list-title">僕のヒーローアカデミア</div><div class="list-text">面白いんだけど、ちょっと中だるみがある。絵は抜群に上手い。</div></div>
+      <div class="list-item"><div class="list-title">GQuuuuuuX</div><div class="list-text">途中までまじで最高に面白いんだけど、最後ががっかり。ただの二次創作じゃんって思ってしまった。</div></div>
+      <div class="list-item"><div class="list-title">進撃の巨人</div><div class="list-text">ちょっと合わないかも……。ほんの少しの楽しさもほしい。</div></div>
+      <div class="list-item"><div class="list-title">サマータイムレンダ</div><div class="list-text">オープニングは最高。でもストーリーはメタ的なのがあって苦手。</div></div>
+      <div class="list-item"><div class="list-title">Re:ゼロから始める異世界生活</div><div class="list-text">グロい………。レムとラムが可愛いのは分かる。</div></div>
 
+      <!-- 化物語：感想の横にリンク -->
       <div class="list-item">
-        <div class="list-title">血界戦線</div>
-        <div class="list-text">最初はとっつきにくいんだけど、回を追うごとに面白さが増す。中毒性も高くて何回も観たくなってしまう。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">デジモン（初代）</div>
-        <div class="list-text">思い出補正が強いけど、やっぱり子供のころに観た「選ばれし者」とか「モンスターの友情」とか
-            ワクワクすることだらけ。デジモンはバトルが観たいんじゃなくて、友情が観たい。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ヴァイオレット・エヴァーガーデン</div>
-        <div class="list-text">最高。１話完結のストーリーで、人によって感動する話は変わると思う。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">逃げ上手の若君</div>
-        <div class="list-text">めっちゃ面白い。時代劇も好きだから最高。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">鬼滅の刃</div>
-        <div class="list-text">映像がすごすぎて圧巻。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">薬屋のひとりごと</div>
-        <div class="list-text">毎週楽しみにしてた。面白かった。人間ドラマが面白い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">サイコパス</div>
-        <div class="list-text">面白かったし、興味深い。AI時代が来て、こういう未来もあるんじゃないかと思った。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">モブサイコ100</div>
-        <div class="list-text">まじで面白かった。一気見した。こういう脱力系の主人公が新しくて良かった。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">葬送のフリーレン</div>
-        <div class="list-text">シーズン１よりもシーズン２のほうが面白い。
-          シーズン２よりシーズン３のほうが面白い。だんだん面白くなっていくアニメ。
-        キャラも良いんだよね。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">銀河特急 ミルキー☆サブウェイ</div>
-        <div class="list-text">５分でサクッと見れるし面白いし、メジェド可愛い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">逆襲のシャア</div>
-        <div class="list-text">面白い。閃光のハサウェイ観る前に観たかった。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">銀魂</div>
-        <div class="list-text">汚いシーンもいっぱいあるけど面白い。キャラで観れる作品。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">かぐや様は告らせたい</div>
-        <div class="list-text">面白い。憧れと共感で一気見できる。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">グレンラガン</div>
-        <div class="list-text">熱い男のアニメ。推しはヴィラル。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ぼっちざろっく</div>
-        <div class="list-text">面白かった。ぼっちちゃんが可愛かった。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">水星の魔女</div>
-        <div class="list-text">面白かった。キャラが良いし、声優も良いし。SFっぽさががっつりあるのがこのガンダムなんじゃないかと思う。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">コードギアス　反逆のルルーシュ</div>
-        <div class="list-text">面白かった。戦闘シーンもすごかった。スザクカッコいい。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">鋼の錬金術師</div>
-        <div class="list-text">名作だと思う。伏線回収も綺麗にするし、構成がしっかりしてるストーリー。声優も豪華。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">エウレカセブン</div>
-        <div class="list-text">面白い。音楽も映像もスタイリッシュ。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">Gガンダム</div>
-        <div class="list-text">ガンダム作品の中でかなり面白い。分かりやすいのでガンダム作品初心者ならこれから観てほしい。</div>
-      </div>
-      
-      <div class="list-item">
-        <div class="list-title">とんでもスキルで異世界放浪飯</div>
-        <div class="list-text">メタ的なのは苦手だけど、面白い。美味しい料理がでてくるストーリーは大体が面白い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">本好きの下剋上</div>
-        <div class="list-text">面白い。本が好きな人は観てほしい。主人公が貪欲なのが良い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">神々の記</div>
-        <div class="list-text">可愛い。森川智之が歌ってるオープニング覚えちゃう（笑）</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">鉄血のオルフェンズ</div>
-        <div class="list-text">めっちゃ面白い。でもシーズン２はネタ化する理由がよくわかる。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">Dr.STONE</div>
-        <div class="list-text">ジャンプのSF漫画。最初の村でストーリーが一番面白いんだよね。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">SEED</div>
-        <div class="list-text">面白いけど、ネットでのネタ化されたのを先に観ちゃったから笑ってしまった。</div>
-      </div>
-      
-      <div class="list-item">
-        <div class="list-title">片田舎のおっさん、剣聖になる</div>
-        <div class="list-text">面白い。キャラへの"憧れ"で観るアニメだよね。
-        こう将来なれたらな……って思う。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ガンダムF91</div>
-        <div class="list-text">当時の色味で懐かしさがある。面白かった。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">マクロスプラス</div>
-        <div class="list-text">面白い。すごく大人なアニメ。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">オーバーロード</div>
-        <div class="list-text">面白かった。ただちょっとグロい。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">NARUTO</div>
-        <div class="list-text">面白い。構図と動きが最高なのよね。今見ると声優が豪華すぎる。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ソードアートオンライン</div>
-        <div class="list-text">ゲーム世界のストーリーって苦手なんだけど面白かった。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ジョジョの奇妙な冒険</div>
-        <div class="list-text">最初はとっつきにくいんだけど、キャラで観ると面白くなる。
-        グロいけど、意外と少年漫画してるんだよね。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">【推しの子】</div>
-        <div class="list-text">シーズン２の2.5次元舞台を中心に回っていくストーリーが一番面白い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">夏目友人帳</div>
-        <div class="list-text">癒されたいときに観てる。アニメの制作陣に愛を感じる。
-        この作品を好きな人は本当に好きだと思う。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">シュタインズゲート</div>
-        <div class="list-text">途中までストーリーがゆっくり進行するのでギブアップしそうになる。
-        でも何が起こってるか真相が分かってからが面白い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">桜蘭高校ホスト部</div>
-        <div class="list-text">高校でホスト部をやるっていうコンセプトは嫌いなんだけど、ストーリーはコミカルで楽しい。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ガンダムW</div>
-        <div class="list-text">キャラで観ると面白い。ヒイロがフィジカルおばけで面白い。SEEDのコーディネーターより強いかもしれない。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">転生したらスライムだった件</div>
-        <div class="list-text">面白いけど、メタ的なものが多くて苦手。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">新世紀エヴァンゲリオン</div>
-        <div class="list-text">一気見した。面白いけどちょっと難しい。アニメ版より映画版のほうが分かりやすい。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">５等分の花嫁</div>
-        <div class="list-text">恋愛ものは苦手なんだけど、誰と結婚するのか予想するのにミステリー要素もちょっとあって楽しかった。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">呪術廻戦</div>
-        <div class="list-text">面白いんだけどグロい。大人っぽい内容だけど友情と青春してるところは少年漫画だなと思う。
-        五条悟の過去編は最高だった。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">東のエデン</div>
-        <div class="list-text">面白いけど、エンディングに納得はいってない。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">魔法少女まどか☆マギカ</div>
-        <div class="list-text">面白いけど、途中で何が起こってるのか分からなくなる。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">モンスターハンターストーリーズ RIDE ON</div>
-        <div class="list-text">途中でかなりテンポが悪くなるんだけど、なんとか最後まで観た。面白かったんだけど、とにかくテンポが悪い。キャラデザとか絵は良い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ガンダム00</div>
-        <div class="list-text">面白いんだけど勢力図が分かりにくい。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ピーナッツくん</div>
-        <div class="list-text">次の展開が分からないギャグに既視感（ボー〇〇）を感じる。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ワンパンマン</div>
-        <div class="list-text">マーベル系のヒーローものって苦手なんだよね……。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ハンターハンター</div>
-        <div class="list-text">一番好きなのはキメラアント編。グリードアイランド編はちょっと難しい。とっつきにくいところと面白いところがある。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">ブルーロック</div>
-        <div class="list-text">アイデアは面白い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">僕のヒーローアカデミア</div>
-        <div class="list-text">面白いんだけど、ちょっと中だるみがある。絵は抜群に上手い。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">GQuuuuuuX</div>
-        <div class="list-text">途中までまじで最高に面白いんだけど、最後ががっかり。ただの二次創作じゃんって思ってしまった。</div>
-      </div>
-      
-      <div class="list-item">
-        <div class="list-title">進撃の巨人</div>
-        <div class="list-text">ちょっと合わないかも……。ほんの少しの楽しさもほしい。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">サマータイムレンダ</div>
-        <div class="list-text">オープニングは最高。でもストーリーはメタ的なのがあって苦手。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">Re:ゼロから始める異世界生活</div>
-        <div class="list-text">グロい………。レムとラムが可愛いのは分かる。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">化物語</div>
+        <div class="list-title">
+          化物語
+          <a href="rechallenge.html" class="inline-link">⇒ 再チャレンジ記録</a>
+        </div>
         <div class="list-text">とにかく難しい。</div>
       </div>
 
-      <div class="list-item">
-        <div class="list-title">あの日見た花の名前を僕達はまだ知らない。</div>
-        <div class="list-text">登場人物がネガティブだし泣きすぎて感動が冷める……。
-        友人でこの作品をすごく好きな人がいるから面白くなかったって言いにくいけど、ちょっと苦手かも……。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">Re:Monster</div>
-        <div class="list-text">続きを観るのが苦しい………。</div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-title">EX-ARM</div>
-        <div class="list-text">なぜこうなった？</div>
-      </div>
-      
+      <div class="list-item"><div class="list-title">あの日見た花の名前を僕達はまだ知らない。</div><div class="list-text">登場人物がネガティブだし泣きすぎて感動が冷める……。友人でこの作品をすごく好きな人がいるから面白くなかったって言いにくいけど、ちょっと苦手かも……。</div></div>
+      <div class="list-item"><div class="list-title">Re:Monster</div><div class="list-text">続きを観るのが苦しい………。</div></div>
+      <div class="list-item"><div class="list-title">EX-ARM</div><div class="list-text">なぜこうなった？</div></div>
     </div>
   </main>
 
